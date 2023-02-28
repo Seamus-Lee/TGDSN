@@ -22,42 +22,10 @@ print(torch.__version__)
 if __name__ == '__main__':
     select_method = 'TGAT'
 
-    hyper_param = {'FD001_FD002': {'epochs': 100, 'batch_size': 256, 'lr': 5e-3, 'lambda_rul': 1, 'lambda_d': 10,
+    hyper_param = {'FD001_FD002': {'epochs': 100, 'batch_size': 256, 'lr': 5e-3, 'lambda_rul': 0.1, 'lambda_d': 10,
                                    'lambda_r': 0.05,
                                    'lambda_f': 0.01, 'StepLR': False, 'gamma': 0.95},
-                   'FD001_FD003': {'epochs': 100, 'batch_size': 256, 'lr': 5e-3, 'lambda_rul': 1, 'lambda_d': 10,
-                                   'lambda_r': 0.05,
-                                   'lambda_f': 0.01, 'StepLR': False, 'gamma': 0.9},
-                   'FD001_FD004': {'epochs': 100, 'batch_size': 256, 'lr': 5e-3, 'lambda_rul': 1, 'lambda_d': 10,
-                                   'lambda_r': 0.05,
-                                   'lambda_f': 0.01, 'StepLR': False, 'gamma': 0.99},
-                   'FD002_FD001': {'epochs': 100, 'batch_size': 256, 'lr': 5e-3, 'lambda_rul': 0.1, 'lambda_d': 10,
-                                   'lambda_r': 0.05,
-                                   'lambda_f': 0.01, 'StepLR': False, 'gamma': 0.99},
-                   'FD002_FD003': {'epochs': 100, 'batch_size': 256, 'lr': 5e-5, 'lambda_rul': 0.1, 'lambda_d': 10,
-                                   'lambda_r': 0.005,
-                                   'lambda_f': 0.01, 'StepLR': False, 'gamma': 0.95},
-                   'FD002_FD004': {'epochs': 100, 'batch_size': 256, 'lr': 5e-3, 'lambda_rul': 0.1, 'lambda_d': 10,
-                                   'lambda_r': 0.05,
-                                   'lambda_f': 0.01, 'StepLR': False, 'gamma': 0.97},
-                   'FD003_FD001': {'epochs': 100, 'batch_size': 256, 'lr': 5e-3, 'lambda_rul': 0.1, 'lambda_d': 10,
-                                   'lambda_r': 0.05,
-                                   'lambda_f': 0.01, 'StepLR': False, 'gamma': 0.99},
-                   'FD003_FD002': {'epochs': 100, 'batch_size': 256, 'lr': 5e-3, 'lambda_rul': 0.1, 'lambda_d': 10,
-                                   'lambda_r': 0.05,
-                                   'lambda_f': 0.01, 'StepLR': False, 'gamma': 0.99},
-                   'FD003_FD004': {'epochs': 100, 'batch_size': 256, 'lr': 5e-3, 'lambda_rul': 0.1, 'lambda_d': 10,
-                                   'lambda_r': 0.05,
-                                   'lambda_f': 0.01, 'StepLR': False, 'gamma': 0.99},
-                   'FD004_FD001': {'epochs': 100, 'batch_size': 256, 'lr': 5e-3, 'lambda_rul': 0.1, 'lambda_d': 10,
-                                   'lambda_r': 0.005,
-                                   'lambda_f': 0.001, 'StepLR': False, 'gamma': 0.99},
-                   'FD004_FD002': {'epochs': 100, 'batch_size': 256, 'lr': 5e-3, 'lambda_rul': 0.1, 'lambda_d': 10,
-                                   'lambda_r': 0.05,
-                                   'lambda_f': 0.01, 'StepLR': False, 'gamma': 0.99},
-                   'FD004_FD003': {'epochs': 100, 'batch_size': 256, 'lr': 5e-3, 'lambda_rul': 0.1, 'lambda_d': 10,
-                                   'lambda_r': 0.005,
-                                   'lambda_f': 0.001, 'StepLR': False, 'gamma': 0.99}}
+                   }
 
     data_path = "D:/TGDSN/data/dataset.pt"
     my_dataset = torch.load(data_path)
@@ -74,7 +42,7 @@ if __name__ == '__main__':
     print(f'Domain Adaptation using: {select_method}')
     print('=' * 89)
     for src_id in ['FD001']:  # 'FD001', 'FD002', 'FD003', 'FD004'
-        for tgt_id in ['FD001', 'FD002', 'FD003', 'FD004']:  # 'FD001', 'FD002', 'FD003', 'FD004'
+        for tgt_id in ['FD002', ]:  # 'FD001', 'FD002', 'FD003', 'FD004'
             if src_id != tgt_id:
                 total_loss = []
                 total_score = []

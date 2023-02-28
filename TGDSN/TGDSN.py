@@ -41,6 +41,21 @@ def TGDSN(params, device, config, model, my_dataset, src_id, tgt_id, args):
         s_model = shared_encoder.model
         s_att = shared_encoder.dense_weight
 
+    elif src_id == 'FD001' and tgt_id == 'FD004':
+        checkpoint = torch.load(
+            f'D:/TGDSN/trained_models/{config["model_name"]}_{src_id}_16.pt',
+            map_location=torch.device('cpu'))
+        private_encoder_s = TGAT(hidden_dim=16).to(device)
+        private_encoder_t = TGAT(hidden_dim=16).to(device)
+        decoder_s = InnerProductDecoder().to(device)
+        decoder_t = InnerProductDecoder().to(device)
+
+        ''' shared encoder '''
+        shared_encoder = TGAT(hidden_dim=16).to(device)
+        shared_encoder.load_state_dict(checkpoint['state_dict'])
+        s_model = shared_encoder.model
+        s_att = shared_encoder.dense_weight
+
     elif src_id == 'FD002' and tgt_id == 'FD003':
         checkpoint = torch.load(
             f'D:/TGDSN/trained_models/{config["model_name"]}_{src_id}_16.pt',
